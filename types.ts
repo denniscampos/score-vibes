@@ -12,6 +12,7 @@ export type NBAScoresType = {
         shortDisplayName: string;
         logo: string;
       };
+      winner: boolean;
       score: number;
     }[];
   }[];
@@ -25,5 +26,6 @@ export type NBAScore = {
     teamName: string;
     score: string;
     teamLogo: string;
+    winner: boolean;
   }[][];
 };

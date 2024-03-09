@@ -23,7 +23,7 @@ export async function Standings() {
               />
               <p>{team.teamName}</p>
             </div>
-            <p className="text-sm">{team.record}</p>
+            <p className="text-sm font-semibold">{team.record}</p>
           </div>
         ))}
       </div>
@@ -46,7 +46,7 @@ export async function Standings() {
               />
               <p>{team.teamName}</p>
             </div>
-            <p className="text-sm">{team.record}</p>
+            <p className="text-sm font-semibold">{team.record}</p>
           </div>
         ))}
       </div>

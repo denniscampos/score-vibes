@@ -5,25 +5,24 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export const formatDate = (dateString: string) => {
+export const formatDate = (
+  dateString: string,
+  timeZone: string = Intl.DateTimeFormat().resolvedOptions().timeZone
+) => {
   const date = new Date(dateString);
 
-  const dateOptions: Intl.DateTimeFormatOptions = {
+  const options: Intl.DateTimeFormatOptions = {
     month: "short",
     day: "numeric",
-  };
-  const timeOptions: Intl.DateTimeFormatOptions = {
     hour: "numeric",
     minute: "2-digit",
     hour12: true,
+    timeZone,
   };
 
-  const formattedDate = new Intl.DateTimeFormat("en-US", dateOptions).format(
-    date
-  );
-  const formattedTime = new Intl.DateTimeFormat("en-US", timeOptions).format(
+  const formattedDateTime = new Intl.DateTimeFormat("en-US", options).format(
     date
   );
 
-  return `${formattedDate} ${formattedTime.toLowerCase()}`;
+  return formattedDateTime;
 };

@@ -68,6 +68,7 @@ export const getNBAScores = async (): Promise<NBAScore[]> => {
         teamName: competitor.team.shortDisplayName,
         teamLogo: competitor.team.logo,
         score: competitor.score,
+        winner: competitor.winner,
       }))
     ),
   }));

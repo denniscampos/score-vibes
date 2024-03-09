@@ -12,8 +12,8 @@ export async function UpcomingGames() {
             key={`game-${index}`}
             className="flex w-full justify-between border-b p-2"
           >
-            <p>{game.gameName}</p>
-            <p className="text-sm">{game.gameDate}</p>
+            <p className="text-sm">{game.gameName}</p>
+            <p className="text-sm font-semibold">{game.gameDate}</p>
           </div>
         ))}
       </div>
