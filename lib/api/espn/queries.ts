@@ -137,7 +137,7 @@ export const getUpcomingGames = async () => {
       const data = await res.json();
 
       upcoming.push({
-        gameDate: formatDate(data.team.nextEvent[0].date),
+        gameDate: data.team.nextEvent[0].date,
         gameName: data.team.nextEvent[0].shortName,
       });
     } catch (err) {

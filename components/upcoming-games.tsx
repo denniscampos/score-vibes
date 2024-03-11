@@ -1,4 +1,5 @@
 import { getUpcomingGames } from "@/lib/api/espn/queries";
+import { NBADates } from "./nba-dates";
 
 export async function UpcomingGames() {
   const games = await getUpcomingGames();
@@ -13,7 +14,7 @@ export async function UpcomingGames() {
             className="flex w-full justify-between border-b p-2"
           >
             <p className="text-sm">{game.gameName}</p>
-            <p className="text-sm font-semibold">{game.gameDate}</p>
+            <NBADates gameDate={game.gameDate} />
           </div>
         ))}
       </div>
