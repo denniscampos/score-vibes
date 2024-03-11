@@ -15,6 +15,7 @@ export async function Standings() {
             className="flex w-full justify-between border-b p-2"
           >
             <div className="flex gap-2">
+              <span className="text-sm">{index + 1}.</span>
               <Image
                 src={team.teamLogo}
                 alt={`${team.teamName} logo`}
@@ -38,6 +39,7 @@ export async function Standings() {
             className="flex w-full justify-between border-b p-2"
           >
             <div className="flex gap-2">
+              <span className="text-sm">{index + 1}.</span>
               <Image
                 src={team.teamLogo}
                 alt={`${team.teamName} logo`}
