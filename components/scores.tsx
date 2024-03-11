@@ -45,6 +45,9 @@ export async function Scores() {
           <Fragment key={game.gameId}>
             {game.matchups.map((matchup, index) => (
               <div key={index} className="">
+                {game.status === "STATUS_SCHEDULED" && (
+                  <em className="text-xs text-foreground">Game not started</em>
+                )}
                 <div className="flex justify-between">
                   <div className="flex gap-2 items-center">
                     <Image
@@ -75,6 +78,7 @@ export async function Scores() {
                     />
                     <p>{matchup?.team2.name}</p>
                   </div>
+
                   <p
                     className={`text-sm font-semibold ${gameWinner(
                       game.status,
@@ -92,3 +96,7 @@ export async function Scores() {
     </section>
   );
 }
+
+// STATUS_IN_PROGRESS game in progress
+// STATUS_SCHEDULED game not started
+// STATUS_FINAL game finished

@@ -2,7 +2,6 @@
 
 import { NBA_TEAMS_STANDINGS } from "@/constants";
 import { NBAScore, NBAScoresType } from "@/types";
-import { formatDate } from "@/lib/utils";
 import { unstable_noStore } from "next/cache";
 
 const ESPN_API = process.env.ESPN_API_URL;
@@ -123,7 +122,7 @@ export const getNBAStandings = async () => {
 };
 
 export const getUpcomingGames = async () => {
-  let upcoming = [];
+  let upcoming: any[] = [];
 
   for (const team of NBA_TEAMS_STANDINGS) {
     try {
@@ -140,6 +139,26 @@ export const getUpcomingGames = async () => {
         gameDate: data.team.nextEvent[0].date,
         gameName: data.team.nextEvent[0].shortName,
       });
+      upcoming.sort((a, b) => {
+        const dateA = a.gameDate ? new Date(a.gameDate) : null;
+        const dateB = b.gameDate ? new Date(b.gameDate) : null;
+
+        // Check if both dates are valid
+        if (dateA && dateB) {
+          return dateA.getTime() - dateB.getTime();
+        } else if (dateA) {
+          return -1; // Assume items with valid dates come before items without
+        } else if (dateB) {
+          return 1; // Assume items without valid dates come after items with
+        } else {
+          return 0; // If neither item has a valid date, consider them equal
+        }
+      });
+
+      upcoming = upcoming.filter(
+        (game, index, self) =>
+          index === self.findIndex((t) => t.gameDate === game.gameDate)
+      );
     } catch (err) {
       console.error(`Error fetching data for team: ${team}, error: ${err}`);
     }
